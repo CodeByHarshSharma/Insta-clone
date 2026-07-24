@@ -9,7 +9,6 @@ const imageKit = new ImageKit({
 })
 
 async function createPostController(req, res) {
-    console.log(req.body, req.file)
 
     const token = req.cookies.token
 
@@ -47,4 +46,58 @@ async function createPostController(req, res) {
     })
 }
 
-module.exports = {createPostController}
+async function getPostController(req, res) {
+    const token = req.cookies.token
+
+    if(!token){
+        return res.status(401).json({
+            message: "Unauthorized Access!"
+        })
+    }
+
+    let decoded;
+    try {
+        decoded = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        res.status(401).json({
+            message: "Token Invalid"
+        })
+    }
+
+    const userId = decoded.id
+
+    const posts = await postModel.find({
+        user: userId
+    })
+
+    res.status(200).json({
+        message: "Post fetched successfully!",
+        posts
+    })
+}
+
+async function getPostDetails(req, res) {
+
+    const token = req.cookies.token
+
+    if(!token){
+        return res.status(401).json({
+            message: "Unauthorized Access!"
+        })
+    }
+
+    let decoded;
+
+    try {
+        decoded = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        res.status(401).json({
+            message: "Invalid Token!"
+        })
+    }
+
+    const userId = decoded.id
+
+}
+
+module.exports = { createPostController, getPostController, getPostDetails }
