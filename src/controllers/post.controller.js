@@ -76,7 +76,7 @@ async function getPostController(req, res) {
     })
 }
 
-async function getPostDetails(req, res) {
+async function getPostDetailsController(req, res) {
 
     const token = req.cookies.token
 
@@ -97,7 +97,29 @@ async function getPostDetails(req, res) {
     }
 
     const userId = decoded.id
+    const postId = req.params.id
+
+    const post = await postModel.findOne(postId)
+
+    if(!post){
+        return res.status(404).json({
+            message: "Post not found!"
+        })
+    }
+
+    const isValidUser = post.user.toString() === userId
+
+    if(!isValidUser){
+        return res.status(403).json({
+            message: "Forbidden Content!"
+        })
+    }
+
+    res.status(200).json({
+        message: "Post Fetched Successfully",
+        post
+    })
 
 }
 
-module.exports = { createPostController, getPostController, getPostDetails }
+module.exports = { createPostController, getPostController, getPostDetailsController }
