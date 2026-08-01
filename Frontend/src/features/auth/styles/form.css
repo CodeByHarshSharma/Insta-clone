@@ -21,7 +21,7 @@ main {
     gap: 1rem;
 }
 
-form input, button{
+form input, .submit{
     border: none;
     outline: none;
     padding: 1rem;

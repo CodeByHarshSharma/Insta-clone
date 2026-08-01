@@ -1,0 +1,86 @@
+.feed-page{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.feed-page .feed{
+    max-width: 300px;
+    width: 100%;
+}
+
+.feed .posts{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.feed .post{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;    
+    background-color: rgb(57, 40, 40);
+    padding: 0.5rem 0.5rem;
+}
+
+.post .user{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.post .user img{
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+
+.user .img-wrapper{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    background: conic-gradient(rgb(255, 183, 0), purple, rgb(255, 183, 0)) border-box;
+}
+
+.post .icons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.icons .left{
+    display: flex;
+    gap: 0.8rem;
+}
+
+.icons .left .like{
+    color: red;
+}
+
+.post .icons i{
+    font-size: 1.5rem;
+    color: white;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.left button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.right button{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+
+.post img{
+    width: 100%;
+}

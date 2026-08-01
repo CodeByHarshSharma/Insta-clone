@@ -3,6 +3,8 @@ import '../styles/form.css'
 import { Link, useNavigate } from 'react-router'
 import axios from 'axios'
 import { useAuth } from '../hooks/useAuth.jsx'
+
+
 const Login = () => {
 
   const [username, setUsername] = useState("")
@@ -44,7 +46,7 @@ const Login = () => {
           name="password" 
           placeholder='Enter Password' />
 
-          <button type='submit'>Login</button>
+          <button className='submit'>Login</button>
         </form>
 
         <p>Don't have an account?<Link className='toggleAuthForm' to='/register'>Register</Link></p>
