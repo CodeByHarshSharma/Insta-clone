@@ -181,6 +181,28 @@ async function unFollowUserController(req, res) {
     })
 }
 
+async function getAllUsersController(req, res) {
+    try {
+        const currentUsername = req.user.username;
+
+        // Get every user except currently logged-in user
+        const users = await userModel.find({
+            username: { $ne: currentUsername }
+        }).select("username profileImage");
+
+        res.status(200).json({
+            message: "Users fetched successfully!",
+            users
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to fetch users",
+            error: error.message
+        });
+    }
+}
+
 
 module.exports = {
     followUserController,
@@ -189,5 +211,6 @@ module.exports = {
     acceptFollowRequestController,
     rejectFollowRequestController,
     getFollowersController,
-    getFollowingController
+    getFollowingController,
+    getAllUsersController
 }

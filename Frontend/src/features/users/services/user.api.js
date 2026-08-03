@@ -49,3 +49,30 @@ export async function rejectFollowRequest(username) {
         throw error
     }
 }
+
+export async function followUser(username) {
+    try {
+        const response = await api.post(`/follow/${username}`)
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function unFollowUser(username) {
+    try {
+        const response = await api.post(`/unfollow/${username}`)
+        return response.data
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function getUsers() {
+    try {
+        const response = await api.get("/getUsers");
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

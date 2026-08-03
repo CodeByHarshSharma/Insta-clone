@@ -6,7 +6,7 @@
     position: sticky;
     top: 100px;
     background: #111113;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 12px;
     display: flex;
@@ -169,4 +169,46 @@
     color: #ff5a67;
 
     transform: scale(1.05);
+}
+
+.follow-btn,
+.unfollow-btn,
+.requested-btn {
+    border: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 650;
+    white-space: nowrap;
+    transition: 0.2s ease;
+}
+
+.follow-btn {
+    background: #f5f5f5;
+    color: #111;
+    cursor: pointer;
+}
+
+.follow-btn:hover {
+    background: white;
+    transform: translateY(-1px);
+}
+
+.requested-btn {
+    background: rgba(255, 255, 255, 0.07);
+    color: #777;
+    cursor: default;
+}
+
+.unfollow-btn {
+    background: rgba(255, 255, 255, 0.07);
+    color: #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+.unfollow-btn:hover {
+    background: rgba(255, 48, 64, 0.13);
+    border-color: rgba(255, 48, 64, 0.25);
+    color: #ff5965;
 }

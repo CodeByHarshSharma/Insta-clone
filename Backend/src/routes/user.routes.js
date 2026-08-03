@@ -18,4 +18,6 @@ userRouter.get("/followers", identifyUser, userController.getFollowersController
 
 userRouter.post("/unfollow/:username", identifyUser, userController.unFollowUserController)
 
+userRouter.get("/getUsers", identifyUser, userController.getAllUsersController)
+
 module.exports = userRouter;
