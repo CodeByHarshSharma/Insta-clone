@@ -24,7 +24,6 @@ async function followUserController(req, res) {
     const isAlreadyFollowing = await followModel.findOne({
         follower: followerUsername,
         followee: followeeUsername,
-        status: "pending"
     })
 
     if (isAlreadyFollowing) {
@@ -59,6 +58,7 @@ async function getPendingRequestController(req, res) {
     const followeeUsername = req.user.username
 
     const pendingRequests = await followModel.find({
+        followee: followeeUsername,
         status: 'pending'
     })
 
@@ -119,6 +119,46 @@ async function rejectFollowRequestController(req, res) {
     })
 }
 
+async function getFollowingController(req, res) {
+    const username = req.user.username
+ 
+    const following = await followModel.find({
+        follower: username,
+        status: "accepted"
+    })
+ 
+    const usernames = following.map(e => e.followee)
+ 
+    const users = await userModel.find({
+        username: { $in: usernames }
+    }).select("username profileImage")
+ 
+    res.status(200).json({
+        message: "Following list fetched!",
+        following: users
+    })
+}
+ 
+async function getFollowersController(req, res) {
+    const username = req.user.username
+ 
+    const followers = await followModel.find({
+        followee: username,
+        status: "accepted"
+    })
+ 
+    const usernames = followers.map(e => e.follower)
+ 
+    const users = await userModel.find({
+        username: { $in: usernames }
+    }).select("username profileImage")
+ 
+    res.status(200).json({
+        message: "Followers list fetched!",
+        followers: users
+    })
+}
+
 async function unFollowUserController(req, res) {
     const followerUsername = req.user.username
     const followeeUsername = req.params.username
@@ -147,5 +187,7 @@ module.exports = {
     unFollowUserController,
     getPendingRequestController,
     acceptFollowRequestController,
-    rejectFollowRequestController
+    rejectFollowRequestController,
+    getFollowersController,
+    getFollowingController
 }

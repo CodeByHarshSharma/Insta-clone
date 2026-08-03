@@ -12,6 +12,10 @@ userRouter.post("/follow/accept/:username", identifyUser, userController.acceptF
 
 userRouter.post("/follow/reject/:username", identifyUser, userController.rejectFollowRequestController)
 
+userRouter.get("/following/", identifyUser, userController.getFollowingController)
+
+userRouter.get("/followers", identifyUser, userController.getFollowersController)
+
 userRouter.post("/unfollow/:username", identifyUser, userController.unFollowUserController)
 
 module.exports = userRouter;

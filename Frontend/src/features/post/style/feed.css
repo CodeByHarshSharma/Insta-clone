@@ -1,8 +1,14 @@
 .feed-page{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.feed-page .nav-bar{
+    width: 100%;
 }
 
 .feed-page .feed{

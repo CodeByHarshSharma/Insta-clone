@@ -1,0 +1,117 @@
+.sidebar{
+    width: 260px;
+    background-color: rgb(57, 40, 40);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: fit-content;
+    position: sticky;
+    top: 1rem;
+}
+
+.sidebar-tabs{
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.sidebar-tab{
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    padding: 0.4rem 0.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.sidebar-tab.active{
+    color: white;
+    font-weight: 600;
+    border-bottom: 2px solid rgb(255, 183, 0);
+}
+
+.sidebar-tab .badge{
+    background-color: red;
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+}
+
+.sidebar-content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.sidebar-empty{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.sidebar-user-row{
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sidebar-user-row .img-wrapper{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    background: conic-gradient(rgb(255, 183, 0), purple, rgb(255, 183, 0)) border-box;
+}
+
+.sidebar-user-row img{
+    width: 2rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+.sidebar-user-row .username{
+    color: white;
+    font-size: 0.85rem;
+    flex: 1;
+}
+
+.row-actions{
+    display: flex;
+    gap: 0.4rem;
+}
+
+.accept-btn, .reject-btn{
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.accept-btn{
+    background-color: rgb(255, 183, 0);
+    color: black;
+}
+
+.reject-btn{
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}

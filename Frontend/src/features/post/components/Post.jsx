@@ -1,7 +1,18 @@
-import React from 'react'
-import { usePost } from '../hooks/usePost'
+import { useState } from 'react'
 
-const Post = ({user, post, loading, handleLike, handleUnLike}) => {
+const Post = ({user, post, handleLike, handleUnLike}) => {
+
+    const [isLiked, setIsLiked] = useState(post.isLiked)
+
+    const handleLikeButton = async () => {
+        if(isLiked){
+            await handleUnLike(post._id)
+            setIsLiked(false)
+        }else{
+            await handleLike(post._id)
+            setIsLiked(true)
+        }
+    }
 
     return (
         <div className="post">
@@ -14,8 +25,7 @@ const Post = ({user, post, loading, handleLike, handleUnLike}) => {
             <img src={post.imgUrl} alt="" />
             <div className="icons">
                 <div className="left">
-                    <button><i className={`ri-heart-line ${post.isLiked?"like":""}`}
-                               onClick={() => {post.isLiked?handleUnLike(post._id):handleLike(post._id)}}></i></button>
+                    <button onClick={handleLikeButton}><i className={`ri-heart-line ${isLiked?"like":""}`}></i></button>
                     <button><i className="ri-chat-1-line"></i></button>
                     <button><i className="ri-send-ins-line"></i></button>
                 </div>

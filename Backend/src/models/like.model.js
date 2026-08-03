@@ -8,13 +8,13 @@ const likeSchema = new mongoose.Schema({
     },
     user: {
         type: String,
-        requried: [true, "Username is requried"]
+        required: [true, "Username is requried"]
     }
 },{
     timestamps: true
 })
 
-likeSchema.index({post: 1, like: 1}, {unique: true})
+likeSchema.index({post: 1, user: 1}, {unique: true})
 
 const likeModel = mongoose.model("likes", likeSchema)
 

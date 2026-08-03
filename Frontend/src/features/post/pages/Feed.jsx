@@ -4,6 +4,7 @@ import 'remixicon/fonts/remixicon.css'
 import { usePost } from '../hooks/usePost'
 import Post from '../components/Post'
 import Nav from '../../shared/components/Nav'
+import Sidebar from '../../users/components/SideBar'
 
 const Feed = () => {
 
@@ -27,6 +28,7 @@ const Feed = () => {
                     })}
                 </div>
             </div>
+            <Sidebar />
         </main>
     )
 }
