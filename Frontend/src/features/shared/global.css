@@ -1,0 +1,18 @@
+.nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 25%;
+    padding: .5rem;
+}
+
+.nav-bar .button{
+    background-color: red;
+    color: white;
+    border: none;
+    outline: none;
+    padding: .5rem;
+    border-radius: 20px;
+    cursor: pointer;
+}
+

@@ -21,18 +21,22 @@ main {
     gap: 1rem;
 }
 
-form input, .submit{
+form input{
     border: none;
     outline: none;
     padding: 1rem;
     border-radius: 10px;
-    font-size: 1rem;
 }
 
 form button{
     background-color: royalblue;
     color: whitesmoke;
     cursor: pointer;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
     transition: all  .4s;
 }
 
@@ -44,4 +48,13 @@ form button:active{
     color: royalblue;
     cursor: pointer;
     text-decoration: none;
+}
+
+form label{
+    text-align: left;
+    background-color: white;
+    color: rgb(58, 58, 58);
+    padding: .7rem;
+    border-radius: 10px;
+    cursor: pointer;
 }

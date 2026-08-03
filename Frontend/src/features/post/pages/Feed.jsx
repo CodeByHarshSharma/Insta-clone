@@ -3,10 +3,11 @@ import '../style/feed.css'
 import 'remixicon/fonts/remixicon.css'
 import { usePost } from '../hooks/usePost'
 import Post from '../components/Post'
+import Nav from '../../shared/components/Nav'
 
 const Feed = () => {
 
-    const{ feed, handleGetFeed, loading } = usePost()
+    const{ feed, handleGetFeed, loading, handleLike, handleUnLike } = usePost()
 
     useEffect(() => {
         handleGetFeed()
@@ -18,10 +19,11 @@ const Feed = () => {
 
     return (
         <main className='feed-page'>
+            <Nav />
             <div className="feed">
                 <div className="posts">
-                    {feed.map(post => {
-                        return <Post user={post.user} post={post} />
+                    {feed.filter(Boolean).map(post => {
+                        return <Post key={post._id} user={post.user} post={post} handleLike={handleLike} handleUnLike={handleUnLike} />
                     })}
                 </div>
             </div>

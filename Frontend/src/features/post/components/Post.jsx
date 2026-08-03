@@ -1,6 +1,8 @@
 import React from 'react'
+import { usePost } from '../hooks/usePost'
 
-const Post = ({user, post}) => {
+const Post = ({user, post, loading, handleLike, handleUnLike}) => {
+
     return (
         <div className="post">
             <div className="user">
@@ -12,7 +14,8 @@ const Post = ({user, post}) => {
             <img src={post.imgUrl} alt="" />
             <div className="icons">
                 <div className="left">
-                    <button><i className={`ri-heart-line ${post.isLiked?"like":""}`}></i></button>
+                    <button><i className={`ri-heart-line ${post.isLiked?"like":""}`}
+                               onClick={() => {post.isLiked?handleUnLike(post._id):handleLike(post._id)}}></i></button>
                     <button><i className="ri-chat-1-line"></i></button>
                     <button><i className="ri-send-ins-line"></i></button>
                 </div>
