@@ -14,9 +14,14 @@ const Feed = () => {
         handleGetFeed()
     },[])
 
-    if(loading || !feed){
-        return (<main><h1>Feed is Loading...</h1></main>)
-    }
+    if (loading || !feed) {
+    return (
+        <main className="feed-loading">
+            <div className="loading-spinner"></div>
+            <p>Loading your feed...</p>
+        </main>
+    );
+}
 
     return (
         <main className='feed-page'>

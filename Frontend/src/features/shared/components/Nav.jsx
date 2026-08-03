@@ -1,18 +1,23 @@
-import React from 'react'
-import '../global.css'
-import { useNavigate } from 'react-router'
+import React from "react";
+import "../global.css";
+import 'remixicon/fonts/remixicon.css'
+import { useNavigate } from "react-router";
 
 const Nav = () => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <nav className='nav-bar'>
+    <nav className="nav-bar">
       <p>Insta</p>
-      <button onClick={() => {navigate('/create-post')}} 
-      className='button primary-button'>new post</button>
-    </nav>
-  )
-}
 
-export default Nav
+      <button
+        onClick={() => navigate("/create-post")}
+        className="button primary-button">
+        <i className="ri-add-line"></i>
+        New post
+      </button>
+    </nav>
+  );
+};
+
+export default Nav;
