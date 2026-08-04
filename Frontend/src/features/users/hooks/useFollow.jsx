@@ -67,7 +67,6 @@ export function useFollow() {
             console.error("Failed to unfollow user:", error)
         }
     }
-
     return {
         following, followers, requests, loading, loadAll, users, requestedUsers, handleAccept, handleReject, handleFollow, handleUnfollow
     }
