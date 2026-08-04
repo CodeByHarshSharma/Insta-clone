@@ -49,7 +49,7 @@ async function getPostDetailsController(req, res) {
 
     const post = await postModel.findById(postId)
 
-    if(!post){
+    if (!post) {
         return res.status(404).json({
             message: "Post not found!"
         })
@@ -57,7 +57,7 @@ async function getPostDetailsController(req, res) {
 
     const isValidUser = post.user.toString() === userId
 
-    if(!isValidUser){
+    if (!isValidUser) {
         return res.status(403).json({
             message: "Forbidden Content!"
         })
@@ -71,15 +71,27 @@ async function getPostDetailsController(req, res) {
 }
 
 async function likePostController(req, res) {
-    
+
     const username = req.user.username
     const postId = req.params.postId
 
     const post = await postModel.findById(postId)
 
-    if(!post){
+    if (!post) {
         return res.status(404).json({
             message: "Post Not Found!"
+        })
+    }
+
+    const alreadyLiked = await likeModel.findOne({
+        post: postId,
+        user: username
+    })
+
+    if (alreadyLiked) {
+        return res.status(200).json({
+            message: "Post already liked!",
+            like: alreadyLiked
         })
     }
 
@@ -104,13 +116,13 @@ async function unLikePostController(req, res) {
         user: username
     })
 
-    if(!isLiked){
+    if (!isLiked) {
         return res.status(400).json({
             message: "Post is not Liked!"
         })
     }
 
-    await likeModel.findOneAndDelete({ _id: isLiked._id})
+    await likeModel.findOneAndDelete({ _id: isLiked._id })
 
     res.status(200).json({
         message: "Post Unliked!"
@@ -121,7 +133,7 @@ async function getFeedController(req, res) {
 
     const user = req.user
 
-    const posts = await Promise.all((await postModel.find().sort({_id: -1 }).populate("user").lean())
+    const posts = await Promise.all((await postModel.find().sort({ _id: -1 }).populate("user").lean())
         .map(async (post) => {
 
             const isLiked = await likeModel.findOne({
@@ -140,11 +152,11 @@ async function getFeedController(req, res) {
     })
 }
 
-module.exports = { 
-    createPostController, 
-    getPostController, 
+module.exports = {
+    createPostController,
+    getPostController,
     getPostDetailsController,
     likePostController,
     unLikePostController,
     getFeedController
- }
+}

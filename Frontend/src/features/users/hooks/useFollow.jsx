@@ -11,8 +11,8 @@ export function useFollow() {
 
     const loadAll = async () => {
         setLoading(true)
-        try {
-            const [followingRes, followersRes, requestsRes, userRes] = await Promise.all([
+        try { const [followingRes, followersRes, requestsRes, userRes] = await Promise.all
+            ([
                 getFollowing(),
                 getFollowers(),
                 getFollowRequests(),
@@ -24,9 +24,7 @@ export function useFollow() {
             setUsers(userRes.users)
 
         } catch (error) {
-
             console.error("Failed to load follow data:", error)
-
         } finally {
             setLoading(false)
         }
