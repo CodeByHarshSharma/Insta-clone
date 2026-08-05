@@ -7,17 +7,25 @@ const api = axios.create({
 
 
 
-export async function getFeed(){
-    const response = await api.get('/api/posts/feed')
+export async function getFeed(category) {
+    const url = category && category !== 'all'
+        ? `/api/posts/feed?category=${category}`
+        : '/api/posts/feed'
+    const response = await api.get(url)
     return response.data
 }
 
-export async function createPost(imageFile, caption) {
+export async function createPost({ type, imageFile, caption, content, category }) {
 
     const formData = new FormData()
 
-    formData.append('image', imageFile)
-    formData.append('caption', caption)
+    if (type === 'image') {
+        formData.append('image', imageFile)
+        formData.append('caption', caption)
+    } else {
+        formData.append('content', content)
+    }
+    formData.append('category', category || 'general')
 
     const response = await api.post('/api/posts', formData)
 

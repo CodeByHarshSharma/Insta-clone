@@ -7,14 +7,27 @@ const postSchema = new mongoose.Schema({
     },
     imgUrl: {
         type: String,
-        required: [true, "Image is required!"]
+    },
+    type: {
+        type: String,
+        enum: ['image', 'text'],
+        default: "image"
+    },
+    content: {
+        type: String,
+        maxlength: [280, "Text posts can't exceed 280 characters"]
+    },
+    category: {
+        type: String,
+        enum: ['general', 'tech', 'art', 'music', 'sports', 'food', 'travel'],
+        default: 'general'
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
         required: [true, "user-id is required!"]
     }
-})
+}, { timestamps: true })
 
 const postModel = mongoose.model('posts', postSchema)
 

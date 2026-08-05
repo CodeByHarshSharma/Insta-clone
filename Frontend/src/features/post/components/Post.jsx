@@ -1,6 +1,18 @@
 import { useState } from "react";
 import 'remixicon/fonts/remixicon.css'
 
+
+function timeAgo(date) {
+    const seconds = Math.floor((Date.now() - new Date(date)) / 1000)
+    if (seconds < 60) return `${seconds}s`
+    const minutes = Math.floor(seconds / 60)
+    if (minutes < 60) return `${minutes}m`
+    const hours = Math.floor(minutes / 60)
+    if (hours < 24) return `${hours}h`
+    return `${Math.floor(hours / 24)}d`
+}
+
+
 const Post = ({ user, post, handleLike, handleUnLike }) => {
     const [isLiked, setIsLiked] = useState(post.isLiked);
     const [isSaved, setIsSaved] = useState(false);
@@ -14,16 +26,31 @@ const Post = ({ user, post, handleLike, handleUnLike }) => {
             setIsLiked(true);
         }
     };
+    const isText = post.type === 'text'
 
     return (
-        <article className="post">
+        <article className={isText ? "post post--text" : "post"}>
             <div className="user">
                 <div className="img-wrapper">
                     <img src={user.profileImage} alt={user.username} />
                 </div>
-                <p>{user.username}</p>
+                <div className="user-meta">
+                    <p>{user.username}</p>
+                    {post.createdAt && <span className="timestamp">{timeAgo(post.createdAt)}</span>}
+                </div>
+                {post.category && post.category !== 'general' && (
+                    <span className="category-tag">{post.category}</span>
+                )}
             </div>
-            <img src={post.imgUrl} alt={post.caption || "Post"} loading="lazy" />
+
+            {isText ? (
+                <div className="text-post-body">
+                    <p>{post.content}</p>
+                </div>
+            ) : (
+                <img src={post.imgUrl} alt={post.caption || "Post"} loading="lazy" />
+            )}
+
             <div className="icons">
                 <div className="left">
                     <button onClick={handleLikeButton} aria-label="Like post" >
@@ -43,11 +70,13 @@ const Post = ({ user, post, handleLike, handleUnLike }) => {
                 </div>
             </div>
 
-            <div className="bottom">
-                <p className="caption">
-                    {post.caption}
-                </p>
-            </div>
+            {!isText && (
+                <div className="bottom">
+                    <p className="caption">
+                        {post.caption}
+                    </p>
+                </div>
+            )}
 
         </article>
     );

@@ -10,6 +10,28 @@ const imageKit = new ImageKit({
 
 async function createPostController(req, res) {
 
+    const { caption, content, category, type } = req.body
+
+    if (!req.file) {
+        if (!content || !content.trim()) {
+            return res.status(400).json({
+                message: "Text posts need content!"
+            })
+        }
+
+        const post = await postModel.create({
+            type: 'text',
+            content,
+            category: category || 'general',
+            user: req.user.id
+        })
+
+        return res.status(201).json({
+            message: "Post created!",
+            post
+        })
+    }
+
     const file = await imageKit.files.upload({
         file: await toFile(Buffer.from(req.file.buffer), 'file'),
         fileName: "test",
@@ -17,8 +39,10 @@ async function createPostController(req, res) {
     })
 
     const post = await postModel.create({
-        caption: req.body.caption,
+        type: 'image',
+        caption: caption,
         imgUrl: file.url,
+        category: category || 'general',
         user: req.user.id
     })
 
@@ -132,19 +156,24 @@ async function unLikePostController(req, res) {
 async function getFeedController(req, res) {
 
     const user = req.user
+    const { category } = req.query
 
-    const posts = await Promise.all((await postModel.find().sort({ _id: -1 }).populate("user").lean())
-        .map(async (post) => {
+    const filter = category && category !== 'all' ? { category } : {}
 
-            const isLiked = await likeModel.findOne({
-                user: user.username,
-                post: post._id
+    const posts = await Promise.all(
+        (await postModel.find(filter).sort({ _id: -1 }).populate("user").lean())
+            .map(async (post) => {
+
+                const isLiked = await likeModel.findOne({
+                    user: user.username,
+                    post: post._id
+                })
+
+                post.isLiked = Boolean(isLiked)
+
+                return post
             })
-
-            post.isLiked = Boolean(isLiked)
-
-            return post
-        }))
+    )
 
     res.status(200).json({
         message: "feed loaded!",

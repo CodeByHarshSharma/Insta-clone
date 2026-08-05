@@ -201,6 +201,150 @@
     color: #888;
 }
 
+.category-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    margin-bottom: 8px;
+    scrollbar-width: none;
+}
+
+.category-tabs::-webkit-scrollbar{
+    display: none;
+}
+
+.create-post-page select {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #262629;
+    color: #212121;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.create-post-page select:focus {
+    outline: none;
+    border-color: #030063;
+}
+
+.category-tabs button {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #262629;
+    background: transparent;
+    color: #b0b0b3;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.category-tabs button:hover {
+    border-color: #f9ce34;
+    color: #f5f5f5;
+}
+
+.category-tabs button.active {
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+    border-color: transparent;
+    color: white;
+}
+
+.post--text {
+    padding-bottom: 8px;
+}
+
+.text-post-body {
+    padding: 4px 18px 16px;
+}
+
+.text-post-body p {
+    color: #f5f5f5;
+    font-size: 19px;
+    line-height: 1.4;
+    font-weight: 450;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.user-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    flex: 1;
+}
+
+.user-meta .timestamp {
+    color: #71717a;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.category-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: #b0b0b3;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: capitalize;
+}
+
+.post-type-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.post-type-toggle button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #262629;
+    background: transparent;
+    color: #b0b0b3;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.post-type-toggle button.active {
+    background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
+    color: white;
+    border-color: transparent;
+}
+
+.text-post-compose {
+    position: relative;
+}
+
+.text-post-compose textarea {
+    width: 100%;
+    min-height: 120px;
+    background: #ffffff;
+    border: 1px solid #262629;
+    border-radius: 12px;
+    color: #151515;
+    font-size: 16px;
+    padding: 14px;
+    resize: vertical;
+}
+
+.text-post-compose .char-count {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-size: 12px;
+    color: #71717a;
+}
+
 .loading-spinner {
     width: 34px;
     height: 34px;

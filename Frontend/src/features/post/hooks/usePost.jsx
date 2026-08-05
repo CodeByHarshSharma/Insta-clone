@@ -6,10 +6,10 @@ export function usePost(){
     const context = useContext(PostContext)
     const { loading, setLoading, feed, setFeed } = context
 
-    const handleGetFeed = async () => {
+    const handleGetFeed = async (category) => {
         setLoading(true)
         try {
-            const data = await getFeed()
+            const data = await getFeed(category)
             setFeed(data.posts)
         } catch (error) {
             console.error(error)
@@ -19,10 +19,10 @@ export function usePost(){
         }
     }
 
-    const handleCreatePost = async (imageFile, caption) => {
+    const handleCreatePost = async (postData) => {
         setLoading(true)
         try {
-            const data = await createPost(imageFile, caption)
+            const data = await createPost(postData)
             setFeed(feed ? [data.post, ...feed] : [data.post])
         } catch (error) {
             console.error(error)
@@ -30,6 +30,8 @@ export function usePost(){
             setLoading(false)
         }
     }
+
+
     const handleLike = async (post) => {
         try {
             await likePost(post)
@@ -37,6 +39,8 @@ export function usePost(){
             console.error(error)
         }
     }
+
+    
     const handleUnLike = async (post) => {
         try {
             await unLikePost(post)
