@@ -57,7 +57,7 @@ const Sidebar = () => {
             </div>
 
             <div className="sidebar-content">
-                {loading && <p className="sidebar-empty">Loading...</p>}
+                {loading && <p className="sidebar-empty"></p>}
 
                 {!loading && activeSection === 'following' && (
                     following.length === 0

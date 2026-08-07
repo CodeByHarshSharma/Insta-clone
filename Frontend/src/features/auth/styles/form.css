@@ -76,9 +76,6 @@ form label {
 }
 
 @media (max-width: 768px) {
-    main {
-        padding: 1.25rem;
-    }
 
     .form-container {
         max-width: 360px;
