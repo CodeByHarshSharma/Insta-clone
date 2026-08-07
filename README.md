@@ -1,4 +1,4 @@
-# Insta Clone
+# Finite
 
 A full-stack Instagram-inspired social media application built to practice modern web development, authentication, API integration, and frontend–backend communication.
 
@@ -36,4 +36,4 @@ This project was built primarily as a learning project to strengthen my understa
 
 ### Clone the repository
 ```bash
-git clone https://github.com/CodeByHarshSharma/Insta-clone.git
+git clone https://github.com/CodeByHarshSharma/Finite.git
