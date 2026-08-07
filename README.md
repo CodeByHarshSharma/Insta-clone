@@ -36,4 +36,4 @@ This project was built primarily as a learning project to strengthen my understa
 
 ### Clone the repository
 ```bash
-git clone https://github.com/CodeByHarshSharma/Insta-clone.git
+git clone https://github.com/CodeByHarshSharma/Finite.git
